@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 注册界面 </title>
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <script type="text/javascript">
+        function checkRegName(obj) {
+            let username = obj.value;
+            let $span = $("#msg");
+
+            $.ajax('{% url 'static_app:check_reg_name' %}', {
+                "method": "GET",
+                "data": {"reg_name": username},
+                "dataType": "json",
+                "success": function (data) {
+                    let status = data.status;
+                    if (status === "1000") {
+                        $span.css("color", "green").html(data.msg);
+                    } else if (status === "1001") {
+                        $span.css("color", "red").html(data.msg);
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+
+<h3> 你好，欢迎注册 </h3>
+
+<form action="" method="post">
+    <p> 用户名：<input type="text" name="reg_name" onblur="checkRegName(this)" /> <span id="msg">  </span></p>
+    <p> <input type="submit" value="注册"> </p>
+</form>
+
+
+
+</body>
+</html>

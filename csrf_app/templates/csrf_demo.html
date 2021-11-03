@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 给予 CSRF 防御的登陆界面 </title>
+</head>
+<body>
+<h3> Cross Site Request Forgery (CSRF) </h3>
+
+<p> 跨站请求伪造是一种黑客攻击的手段，接下来将在这里进行展示。 </p>
+<p> 在 Django 中通过 csrf 中间件实现了对 csrf 的防御。 </p>
+<p> 实际操作中，只要加上一行 "大百" csrf_token 就行了，详见本页面模板代码。 </p>
+<p> 系统会自动为你的表单生成一个 csrf_token 来为你的表单加密。 </p>
+
+<form method="post" action="{% url 'csrf_app:register' %}">
+    {% csrf_token %}
+    <p>用户名： <input type="text" name="username"></p>
+    <p> <input type="submit" value="提交"> </p>
+</form>
+</body>
+</html>

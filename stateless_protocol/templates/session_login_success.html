@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if request.session.username %}
+    <title> 欢迎你，{{ request.session.username }}！ </title>
+    {% else %}
+        <title> 迷路的孩子 </title>
+    {% endif %}
+</head>
+<body>
+{% if request.session.username %}
+    <h3> 登陆成功页面 </h3>
+    <p> 你已经登陆成功了，{{ request.session.username }} </p>
+{% else %}
+    <h3> Oops, where are you from? </h3>
+    <p> 点击 <a href="{% url 'session_app:session_login' %}"> 此处 </a> 登陆 </p>
+{% endif %}
+
+</body>
+</html>

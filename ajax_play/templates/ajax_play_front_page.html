@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 玩玩 Ajax 吧 </title>
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <script type="text/javascript">
+        function ajax_play() {
+            let $ap = $('#ajax-p');
+            $.ajax("{% url 'ajax_play:ajax_play_trigger_ajax' %}", {
+                "method": "GET",
+                "data": {"reg_name": "Emasik"},
+                "dataType": "json",
+                "success": function (data) {
+                    $ap.html(data.something);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<h3> 一起来玩 Ajax 吧 </h3>
+<input type="button" value="点我" onclick="ajax_play()" />
+
+<p id="ajax-p">  </p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title> 为请求添加/移除 cookies </title>
+</head>
+<body>
+    <h3>
+        This is a demo of adding/removing cookies on a response.
+    </h3>
+
+    <p> this page will add cookie named "username" you post. </p>
+    <form action="{% url 'session_app:username_posting' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" />
+        <input type="submit" value="sign in" />
+    </form>
+    <p> if you want cookies to contain any non-latin character,
+        you should change encoding in headers.py from "latin-1" to "utf-8" </p>
+
+    <hr />
+    <p> here will show your user name if you have posted your cookies: </p>
+    <p>  your name is: <span>{{ username }}</span> </p>
+</body>
+</html>

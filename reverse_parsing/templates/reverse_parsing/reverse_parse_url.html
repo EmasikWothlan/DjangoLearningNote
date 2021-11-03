@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> URL 的反向解析 </title>
+</head>
+<body>
+<h3> URL 的反向解析 </h3>
+<p> 这是为了减少前端页面中关于请求地址的硬编码：
+    想象一下如果我改了一个页面的路由，那么是不是从总路由开始，到前端页面所有的地方都得改啊，只是想想就觉得很危险。 </p>
+
+<p> 那么关于反向解析，有下面一些说法 </p>
+<ul>
+    <li>
+        在模板中使用反向解析
+        <ol>
+            <li> 设置命名空间，解析第一部分 URL。 </li>
+            <li> 总路由中设置参数指定名称，解析第二部分 URL。 </li>
+            <li> 在子路由中设置 app_name。 </li>
+            <li> 在模板中使用反向解析。 </li>
+        </ol>
+    </li>
+</ul>
+
+<p> 这下面就有一个处理反向解析的 a 标签 (你需要查看模板源代码)： </p>
+<a href="{% url 'reverse_parsing:hello_reverse' %}"> <input type="button" value="反向解析 URL" /> </a>
+
+<p> 通过对比上面链接的 网页源码 和 模板源码，
+    可以看到，于总路由中，用 include() 函数中指定 namespace 参数可以让 URL 的前半段被自动解析避免硬编码。
+    而在子路由中，通过为 path() 函数指定 name 参数可以让 URL 的后半段被自动解析，避免硬编码。
+</p>
+<p> 在上述例子中，reverse_parsing 就是总路由中 include 函数收到的 namespace 参数。 </p>
+<p> hello_reverse 则是子路由中的 name 参数。 </p>
+
+<p> 接下来展示一个可以传递参数的反向解析。 </p>
+<a href="{% url 'reverse_parsing:hobby' 'lemon' 'fencing' %}"> <input type="button" value="带参反向解析" /> </a>
+<p> 提问，现在参数是被写死的，我怎么用前端代码传用户的参数？ </p>
+<p> 以及，为什么用上面的代码生成的 URL 最后还有个句号？ </p>
+
+<h3> 关于重定向 </h3>
+<p> 在这个教程页面中，也同时照顾了重定向，请通过<a href="{% url 'reverse_parsing:register-page' %}">这个页面</a>前往相关展示。 </p>
+
+</body>
+</html>

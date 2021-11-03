@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 关于 URL 重定向的实现 </title>
+</head>
+<body>
+
+<h3> 重定向展示 </h3>
+<p> 在实际开始聊到重定向之前，我们先讲一个跟这个相关的题外话。 </p>
+
+<p> 事实上，在视图函数中也可以使用反向解析。 </p>
+<p> 通过 reverse 函数来进行代码层面的反向解析。 </p>
+<p> reverse(namespace=YOUR_NAME_SPACE, args=YOUR_PARAM_IF_THERE_IS_AND_MUST_BE_IN_A_TUPLE) </p>
+<p> 事实上 reverse 函数还支持其他一些参数和调用方式，有空可以日后研究一下。 </p>
+
+
+<br />
+<p> 此外，再补充一点术语用来装逼： </p>
+<ul>
+    <li> 转发：又叫服务端跳转，对于客户端这边，用户通常感受不到这个过程，他觉得他只发了一个请求，服务器也只回复了一个响应。 </li>
+    <li> 重定向：又叫客户端跳转，客户端可以明显感受到这个过程，每次跳转都发送一个请求，服务器回复一个响应。 </li>
+</ul>
+
+<hr />
+<p> 于是我们回到重定向... </p>
+<p> 在本例中，我们使用用户注册来实践一个重定向过程 </p>
+
+<form action="{% url 'reverse_parsing:register-form-post' %}" method="post">
+    <p>用户名： <input type="text" name="username" /></p>
+    <p><input type="submit" value="提交" /></p>
+</form>
+<p> 再点击提交之后记得阅读之后的页面说明，在这里我们注意到一个问题，这个 post 请求交过去之后，
+    如果继续按照传统方式给他返回一个简单的页面的话，就会出现一个隐患。 </p>
+
+</body>
+</html>

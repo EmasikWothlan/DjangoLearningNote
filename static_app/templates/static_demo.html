@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 你好，静态资源 </title>
+</head>
+<body>
+<h3> 静态资源 </h3>
+<p> 本页面是静态资源展示页面。 </p>
+<p> 在 Django 中，有一个叫做静态资源嗅探器的东西，你可以在 settings.py 中找到一个叫 STATIC_URL 的变量，只要你指定了这个变量的值，那么 Django 框架就会开启静态资源嗅探器。 </p>
+<p> 注意， STATIC_URL 这个变量跟我们实际的存储目录名称没有关系，它的值实际上是给客户端看的。 </p>
+<p> 为了实现这个目的，我在 static_app 中新建了一个 static 目录，并在里面放上了几张人类圣经。 </p>
+
+<p> 这里往下是展示 </p>
+<h3> Welcome to my site! </h3>
+<p> 在下面的 img 标签中，我们就使用了静态资源。 </p>
+<p> 不过你需要在模板代码中，于 DOCTYPE html 下面那一行 (通常是第二行) 加上一句 load static。具体请参考本页面的模板代码。 </p>
+<img src="{% static 'img/__nakabeni_yua_aikawa_ren_moegi_homi_and_okuzumi_yuiko_miru_tights_drawn_by_yomu_sgt_epper__850bdc0b782528247fb307c9fbc55d5d.jpg' %}" />
+
+<p> 下面这张老师的图的静态资源写法又有所不同，这里需要去看 settings.py 里面的 STATICFILES_DIRS。 </p>
+<img src="{% static 'img/__okuzumi_yuiko_miru_tights_drawn_by_yomu_sgt_epper__c4a8accd0412f236117f958557bbaf21.jpg' %}">
+<p> 这里有一点需要单独提出来注意一下： </p>
+<p> 在 settings.py 中的 STATIC_URL 后面指定的值跟静态资源文件的存放路径没有任何关系，它的值被用于渲染的网页中静态资源的 URL 而不是服务器这边的存储路径。 </p>
+<p> 一般建议，这个值能改还是改一改，因为你的服务器架构可能会被恶意攻击者猜到，进而对你的服务器实施攻击。 </p>
+
+
+</body>
+</html>

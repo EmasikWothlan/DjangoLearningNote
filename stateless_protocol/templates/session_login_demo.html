@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 使用 Session 登陆 </title>
+</head>
+<body>
+    <form action="{% url 'session_app:session_login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="输入登陆名称" name="username" />
+        <input type="submit" value="登陆">
+    </form>
+</body>
+</html>
